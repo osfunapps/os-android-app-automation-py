@@ -1,0 +1,21 @@
+<!-- Notice the extension at the top. Here we will define the path to the parent mapper xml -->
+<android_mapper extension_mapper_path="$android_shared_mapper">
+    <project_properties>
+        <app_ad_id>ca-app-pub-12345678798~546</app_ad_id>
+        <package_name>com.osfunapps.my_package_name</package_name>
+        <app_name>MyAppName</app_name>
+        <version_code>12</version_code>
+        <version_name>1.2</version_name>
+    </project_properties>
+
+    <!-- will add more modules, they will be merged with the parent modules -->
+    <added_modules>
+        <module>another_module</module>
+    </added_modules>
+
+    <!-- will add more dependencies, they will be merged with the parent modules -->
+    <gradle_dependencies>
+        implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    </gradle_dependencies>
+
+</android_mapper>

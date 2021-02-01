@@ -1,0 +1,31 @@
+<android_mapper>
+
+    <settings>
+        <work_on_project_alias>false</work_on_project_alias>
+    </settings>
+
+    <project_properties>
+        <project_path>/path/to/project</project_path>
+        <google_services_path>/path/to/google/services.json</google_services_path>
+        <launchers_path>/path/to/launcher/directories</launchers_path>
+        <assets_path>/path/to/assets</assets_path>
+    </project_properties>
+
+    <added_modules>
+        <module>module_1</module>
+        <module>module_2</module>
+        <module>module_3</module>
+        <!-- the rest of the modules will come from the child -->
+    </added_modules>
+
+    <gradle_dependencies>
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+        implementation 'androidx.core:core-ktx:1.3.2'
+        implementation 'androidx.appcompat:appcompat:1.2.0'
+
+        // the rest of the modules dependencies will come from the child
+
+    </gradle_dependencies>
+
+
+</android_mapper>
