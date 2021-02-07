@@ -4,7 +4,7 @@ setup(
     name='os_android_app_automation',  # How you named your package folder (MyLib)
     packages=['os_android_app_automation',
               'os_android_app_automation.bp'],  # Choose the same as "name"
-    version='1.12',  # Start with a small number and increase it with every change you make
+    version='1.13',  # Start with a small number and increase it with every change you make
     license='MIT',  # Chose a license from here: https://help.github.com/articles/licensing-a-repository
     description='Will prepare/release an Android app by properties defined by a xml file',  # Give a short description about your library
     author='Oz Shabat',  # Type in your name

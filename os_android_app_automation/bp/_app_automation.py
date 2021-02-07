@@ -74,6 +74,7 @@ def manipulate(xml_path, xml, place_holder_map, on_backup, on_pre_build):
     # fetch the settings nodes
     settings_node = xh.get_child_nodes(root_node, 'settings')[0]
     create_alias = xh.get_text_from_child_node(settings_node, 'work_on_project_alias')
+    create_alias = shared_tools.fill_place_holders(create_alias, place_holder_map)
 
     # fetch the project properties
     project_properties_node = xh.get_child_nodes(root_node, 'project_properties')[0]
