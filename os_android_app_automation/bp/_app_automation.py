@@ -138,7 +138,7 @@ def manipulate(xml_path, xml, place_holder_map, on_backup, on_pre_build):
     logger.info('adding dependencies...')
     dependencies_nodes = xh.get_child_nodes(root_node, 'gradle_dependencies')
     if dependencies_nodes:
-        set_build_gradle_file(project_build_gradle, dependencies_nodes, version_name, version_code)
+        set_build_gradle_file(project_build_gradle, dependencies_nodes, version_name, version_code, logger)
 
     # add modules
     added_modules_node = xh.get_child_nodes(root_node, 'added_modules')
@@ -162,20 +162,26 @@ def manipulate(xml_path, xml, place_holder_map, on_backup, on_pre_build):
 
 
 # will operate the <pods> tag
-def set_build_gradle_file(project_build_gradle, dependencies_nodes, version_name, version_code):
+def set_build_gradle_file(project_build_gradle, dependencies_nodes, version_name, version_code, logger):
     build_gradle_lines = fsh.read_text_file(project_build_gradle)
     import re
+
+    if version_name is None:
+        logger.info('version_name is None: keeping the same properties')
+
+    if version_code is None:
+        logger.info('version_code is None: keeping the same properties')
 
     # copy the first part of the build.gradle file
     build_gradle_output = []
     for line in build_gradle_lines:
 
         # set the right version name or version code, if required
-        if 'versionCode' in line:
+        if version_code is not None and 'versionCode' in line:
             line = re.sub('[.0-9+]', '', line)
             line = line.replace('\n', '')
             line += f'{version_code}\n'
-        elif 'versionName' in line:
+        elif version_name is not None and 'versionName' in line:
             line = re.sub('[".0-9+]', '', line)
             line = line.replace('\n', '')
             line += f'"{version_name}"\n'

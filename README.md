@@ -7,9 +7,9 @@ To use, create an XML file with your app properties and run.
 
 ## Installation
 Install via pip:
-
-    pip install os-android-app-automation
-
+```python
+pip install os-android-app-automation
+```
 ## Usage:
 
 Create an XML file with your app properties:
@@ -90,26 +90,26 @@ Create an XML file with your app properties:
 </android_mapper>
 ```
 After your created the XML file, call it from code:
+```python
+from os_android_app_automation import app_automation 
 
-    from os_android_app_automation import app_automation 
+app_automation.set_android_project_by_xml(xml_path='path/to/xml/file.xml',
+                              place_holder_map={'$project_path': 'path/to/android/project'}, # optional define in runtime
+                              on_backup=on_backup,                  // optional call back here
+                              on_pre_build=on_pre_build             // optional callback here
+)
 
-    app_automation.set_android_project_by_xml(xml_path='path/to/xml/file.xml',
-                                  place_holder_map={'$project_path': 'path/to/android/project'}, # optional define in runtime
-                                  on_backup=on_backup,                  // optional call back here
-                                  on_pre_build=on_pre_build             // optional callback here
-    )
+# optional callbacks:
 
-    # optional callbacks:
+# this callback will be fired before the process begins. You can clear files, remove directories and etc...
+# notice that the package name here is the old package name of the project (the automation didn't changed anything yet)
+def on_backup(project_path, old_package_name):
+    pass
 
-    # this callback will be fired before the process begins. You can clear files, remove directories and etc...
-    # notice that the package name here is the old package name of the project (the automation didn't changed anything yet)
-    def on_backup(project_path, old_package_name):
-        pass
-
-    # this callback will be fired right before the build will commence. i.e. after package name change, assets copy and essentially, before apk/bundle creation 
-    def on_pre_build(project_path, package_name):
-        pass
-
+# this callback will be fired right before the build will commence. i.e. after package name change, assets copy and essentially, before apk/bundle creation 
+def on_pre_build(project_path, package_name):
+    pass
+```
 
 # Advanced Usage:
 
